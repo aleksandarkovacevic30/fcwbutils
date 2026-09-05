@@ -10,7 +10,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "node tests/domain.test.mts && node tests/merge.test.mts && node tests/fixture.test.mts",
+    "test": "node tests/domain.test.mts && node tests/merge.test.mts && node tests/export.test.mts && node tests/fixture.test.mts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

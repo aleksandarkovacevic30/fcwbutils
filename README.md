@@ -44,6 +44,15 @@ Der jährliche Saisonwechsel in fünf Schritten:
 
 Der Fortschritt der Arbeitsliste überlebt einen Seitenwechsel oder Reload.
 
+Die Arbeitsliste lässt sich als **Excel-Mappe** oder CSV herunterladen. Die Mappe
+enthält ein Blatt „Plan" (alles), ein Blatt „Arbeitsliste" (nur die Wechsel, nach
+Ziel gebündelt, mit Erledigt-Spalte) und **ein Blatt pro Team** mit dessen
+Zu- und Abgängen — damit man jeder Trainerin genau ihr Blatt schicken kann.
+
+> Diese Dateien sind **keine Import-Vorlage**. Gumb kann keine Mitglieder
+> importieren; es gibt nichts, wohin man sie zurückschreiben könnte. Sie sind
+> Arbeitsunterlage, Verteilhilfe und Beleg.
+
 #### Zwei Aufbauten, ein Werkzeug
 
 Vereine führen Gumb unterschiedlich, und davon hängt ab, was der Jahreswechsel

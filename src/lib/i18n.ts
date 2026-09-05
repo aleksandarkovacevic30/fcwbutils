@@ -151,6 +151,25 @@ const de = {
   "reason.multipleTargetGroups": "Zielkategorie hat mehrere Gruppen — bitte wählen",
   "reason.manualStay": "Von Hand auf «bleibt» gesetzt",
 
+  "export.xlsx": "Excel (.xlsx)",
+  "export.csv": "CSV",
+  "export.note":
+    "Gumb kann keine Mitglieder importieren — diese Dateien sind Arbeitsunterlagen zum Abarbeiten und Weitergeben, keine Import-Vorlage.",
+  "export.sheetPlan": "Plan",
+  "export.sheetWorklist": "Arbeitsliste",
+  "export.colLastName": "Nachname",
+  "export.colFirstName": "Vorname",
+  "export.colBirthYear": "Jahrgang",
+  "export.colStatus": "Status",
+  "export.colFrom": "Von",
+  "export.colTo": "Nach",
+  "export.colNotes": "Hinweise",
+  "export.colDone": "Erledigt",
+  "export.colDirection": "Richtung",
+  "export.colCounterpart": "Gegenseite",
+  "export.arrival": "Zugang",
+  "export.departure": "Abgang",
+
   "roster.title": "Datencheck",
   "roster.lead":
     "Die Probleme, die den Saisonwechsel und die J+S-Abrechnung stolpern lassen — bevor sie es tun.",
@@ -405,6 +424,25 @@ const en: Dict = {
   "reason.tooOld": "Too old for the junior structure",
   "reason.multipleTargetGroups": "Target category has several groups — please choose",
   "reason.manualStay": "Manually set to “stays”",
+
+  "export.xlsx": "Excel (.xlsx)",
+  "export.csv": "CSV",
+  "export.note":
+    "Gumb cannot import members — these files are working documents to work through and hand around, not an import template.",
+  "export.sheetPlan": "Plan",
+  "export.sheetWorklist": "Worklist",
+  "export.colLastName": "Last name",
+  "export.colFirstName": "First name",
+  "export.colBirthYear": "Birth year",
+  "export.colStatus": "Status",
+  "export.colFrom": "From",
+  "export.colTo": "To",
+  "export.colNotes": "Notes",
+  "export.colDone": "Done",
+  "export.colDirection": "Direction",
+  "export.colCounterpart": "Counterpart",
+  "export.arrival": "Joining",
+  "export.departure": "Leaving",
 
   "roster.title": "Data check",
   "roster.lead":

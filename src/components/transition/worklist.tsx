@@ -1,7 +1,13 @@
 "use client"
 
-import { useMemo } from "react"
+import { useMemo, useState } from "react"
 import { bucketByTargetGroup } from "@/lib/domain/transition"
+import {
+  buildPlanCsv,
+  buildPlanWorkbook,
+  downloadBlob,
+  planFileName,
+} from "@/lib/io/export"
 import type { TransitionItem } from "@/lib/types"
 import { useApp } from "@/lib/store"
 import { Button, Card, PrintButton } from "@/components/ui"
@@ -13,6 +19,7 @@ import { Button, Card, PrintButton } from "@/components/ui"
 export function Worklist({ items }: { items: TransitionItem[] }) {
   const { t, state, update } = useApp()
   const perCommunity = state.structure === "communities"
+  const [exporting, setExporting] = useState(false)
   const buckets = useMemo(() => bucketByTargetGroup(items), [items])
 
   const moves = useMemo(() => items.filter((i) => i.action === "move"), [items])
@@ -25,6 +32,27 @@ export function Worklist({ items }: { items: TransitionItem[] }) {
         [memberId]: !prev.worklistProgress[memberId],
       },
     }))
+  }
+
+  async function downloadXlsx() {
+    setExporting(true)
+    try {
+      // ExcelJS wird erst hier geladen; die Datei entsteht komplett im Browser.
+      const blob = await buildPlanWorkbook(items, state.season, (key, vars) =>
+        t(key as Parameters<typeof t>[0], vars),
+      )
+      downloadBlob(blob, planFileName(state.season, "xlsx"))
+    } finally {
+      setExporting(false)
+    }
+  }
+
+  function downloadCsv() {
+    const csv = buildPlanCsv(items, (key, vars) => t(key as Parameters<typeof t>[0], vars))
+    downloadBlob(
+      new Blob([csv], { type: "text/csv;charset=utf-8" }),
+      planFileName(state.season, "csv"),
+    )
   }
 
   function toggleBucket(bucketItems: TransitionItem[], value: boolean) {
@@ -57,13 +85,21 @@ export function Worklist({ items }: { items: TransitionItem[] }) {
             {perCommunity ? t("trans.worklistLeadCommunities") : t("trans.worklistLead")}
           </p>
         </div>
-        <div className="no-print flex gap-2">
+        <div className="no-print flex flex-wrap gap-2">
+          <Button variant="primary" onClick={() => void downloadXlsx()} disabled={exporting}>
+            {t("export.xlsx")}
+          </Button>
+          <Button onClick={downloadCsv}>{t("export.csv")}</Button>
           <PrintButton />
           <Button onClick={() => update({ worklistProgress: {} })}>
             {t("trans.resetProgress")}
           </Button>
         </div>
       </div>
+
+      <p className="no-print mt-3 text-xs text-slate-500 dark:text-slate-400">
+        {t("export.note")}
+      </p>
 
       <div className="mt-4 flex items-center gap-3">
         <div
