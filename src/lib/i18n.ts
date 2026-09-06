@@ -170,6 +170,16 @@ const de = {
   "export.arrival": "Zugang",
   "export.departure": "Abgang",
 
+  "gate.title": "Diese Seite ist nicht öffentlich",
+  "gate.lead":
+    "Der FCWB-Werkzeugkasten ist nur über einen geteilten Link erreichbar. Ohne diesen Link gibt es hier nichts zu sehen.",
+  "gate.hint":
+    "Wenn du den Link brauchst, frag die Person im Verein, die dir diese Seite gezeigt hat.",
+  "gate.noData":
+    "Auf dem Server liegen ohnehin keine Personendaten. Alle Daten der App bleiben im Browser der jeweiligen Person — hier ist nichts gespeichert, was jemand einsehen könnte.",
+  "gate.unprotected":
+    "Kein Zugangsschlüssel gesetzt — diese Seite ist öffentlich erreichbar.",
+
   "roster.title": "Datencheck",
   "roster.lead":
     "Die Probleme, die den Saisonwechsel und die J+S-Abrechnung stolpern lassen — bevor sie es tun.",
@@ -443,6 +453,15 @@ const en: Dict = {
   "export.colCounterpart": "Counterpart",
   "export.arrival": "Joining",
   "export.departure": "Leaving",
+
+  "gate.title": "This page is not public",
+  "gate.lead":
+    "The FCWB toolkit is only reachable through a shared link. Without that link there is nothing here to see.",
+  "gate.hint":
+    "If you need the link, ask whoever at the club showed you this page.",
+  "gate.noData":
+    "There is no personal data on the server anyway. All of the app's data stays in each person's own browser — nothing is stored here for anyone to look at.",
+  "gate.unprotected": "No access key is set — this page is publicly reachable.",
 
   "roster.title": "Data check",
   "roster.lead":

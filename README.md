@@ -160,9 +160,38 @@ Vercel erkennt Next.js automatisch — Repository verbinden, fertig. Es braucht
 keine Umgebungsvariablen und keine Datenbank; alle Seiten sind statisch
 vorgerendert.
 
-Weil die Daten pro Browser liegen, ist die App faktisch privat, auch wenn die
-URL öffentlich ist. Wer den Zugang trotzdem einschränken will, nimmt den
-Passwortschutz von Vercel (Pro) oder hält die URL im Verein.
+#### Zugang per geteiltem Link
+
+Setze in Vercel unter Settings → Environment Variables die Variable
+`ACCESS_KEY`. Danach kommt nur noch rein, wer den Link mit dem Schlüssel hat;
+alle anderen sehen eine Hinweisseite.
+
+```bash
+# Schlüssel erzeugen
+node -e "console.log(require('crypto').randomBytes(16).toString('base64url'))"
+```
+
+Der zu teilende Link lautet dann `https://<domain>/?key=<ACCESS_KEY>`. Beim
+ersten Aufruf wird ein Cookie gesetzt (ein Jahr gültig, `HttpOnly`) und der
+Schlüssel aus der Adresszeile entfernt, damit er nicht im Verlauf, in
+Lesezeichen oder in Screenshots landet. Wer den Zugang entziehen will, ändert
+`ACCESS_KEY` und verteilt den neuen Link — alte Cookies verfallen damit sofort.
+
+**Ist die Variable nicht gesetzt, ist die Seite öffentlich** und zeigt oben
+einen Warnbanner. Eine Schranke, von der man fälschlich annimmt, sie sei aktiv,
+wäre schlimmer als gar keine.
+
+Was diese Schranke leistet und was nicht:
+
+- ✅ Hält zufällige Besucher und Suchmaschinen draussen.
+- ❌ Ist **kein** Schutz personenbezogener Daten. Links wandern weiter — per
+  Mail, im Browserverlauf, auf geteilten Geräten. Es gibt kein Konto, keine
+  Rollen, keine Nachvollziehbarkeit, wer den Link benutzt hat.
+
+Der eigentliche Datenschutz liegt woanders und ist stärker: **auf dem Server
+liegen überhaupt keine Mitgliederdaten.** Wer den Link errät, findet ein leeres
+Werkzeug vor. Wer echten Zugriffsschutz mit Konten braucht, nimmt den
+Passwortschutz von Vercel (Pro) oder SSO davor.
 
 ## Ausprobieren
 

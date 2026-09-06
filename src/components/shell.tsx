@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
+import { GATE_COOKIE } from "@/lib/gate"
 import { LOCALES } from "@/lib/i18n"
 import { useApp } from "@/lib/store"
 import type { Locale } from "@/lib/types"
@@ -18,6 +20,16 @@ const NAV: { href: string; key: TranslationKey }[] = [
 export function Shell({ children }: { children: React.ReactNode }) {
   const { t, locale, setLocale, hydrated, storageError } = useApp()
   const pathname = usePathname()
+  const [unprotected, setUnprotected] = useState(false)
+
+  useEffect(() => {
+    // Die Proxy-Schicht setzt dieses Cookie. "open" heisst: keine Schranke aktiv.
+    setUnprotected(document.cookie.includes(`${GATE_COOKIE}=open`))
+  }, [])
+
+  // Die Hinweisseite bekommt keine Navigation: wer sie sieht, hat hier nichts
+  // zu bedienen, und Menuepunkte waeren nur eine Einladung zum Herumprobieren.
+  if (pathname === "/gesperrt") return <>{children}</>
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -85,6 +97,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
           </div>
         </div>
       </header>
+
+      {unprotected ? (
+        <div className="no-print border-b border-amber-300 bg-amber-50 px-4 py-2 text-center text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-200">
+          {t("gate.unprotected")}
+        </div>
+      ) : null}
 
       {storageError ? (
         <div className="no-print border-b border-amber-300 bg-amber-50 px-4 py-2 text-center text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-200">
