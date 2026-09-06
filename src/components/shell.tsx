@@ -27,10 +27,6 @@ export function Shell({ children }: { children: React.ReactNode }) {
     setUnprotected(document.cookie.includes(`${GATE_COOKIE}=open`))
   }, [])
 
-  // Die Hinweisseite bekommt keine Navigation: wer sie sieht, hat hier nichts
-  // zu bedienen, und Menuepunkte waeren nur eine Einladung zum Herumprobieren.
-  if (pathname === "/gesperrt") return <>{children}</>
-
   return (
     <div className="flex min-h-screen flex-col">
       <header className="no-print sticky top-0 z-20 border-b border-slate-200 bg-white/85 backdrop-blur dark:border-slate-800 dark:bg-slate-950/85">

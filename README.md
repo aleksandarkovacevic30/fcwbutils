@@ -149,9 +149,14 @@ src/lib/domain/    Fachlogik, frei von React — hier wird gerechnet
   roster.ts        Datenqualitätsprüfungen
   jus.ts           J+S-Prüfungen
 src/lib/io/        Dateien einlesen und Spalten zuordnen
+src/lib/gate.ts    Zugangsschranke (Entscheidungslogik)
 src/lib/store.tsx  Zustand + localStorage
 src/components/    Oberfläche
-src/app/           Seiten (alle statisch, alles clientseitig)
+src/proxy.ts       Zugangsschranke (Next-Proxy, früher "middleware")
+src/app/
+  layout.tsx       nur Dokument und Stylesheet
+  (app)/           die App: Zustandsspeicher, Kopfzeile, Navigation, Seiten
+  gesperrt/        Hinweisseite ohne jeden Anwendungscode
 ```
 
 ### Deployment
@@ -180,6 +185,12 @@ Lesezeichen oder in Screenshots landet. Wer den Zugang entziehen will, ändert
 **Ist die Variable nicht gesetzt, ist die Seite öffentlich** und zeigt oben
 einen Warnbanner. Eine Schranke, von der man fälschlich annimmt, sie sei aktiv,
 wäre schlimmer als gar keine.
+
+Wer die Schranke nicht passiert, sieht eine nackte Hinweisseite: keine
+Kopfzeile, keine Navigation, kein Vereinsname im Seitentitel — und **kein
+Anwendungscode**. Die Seiten der App liegen in der Routen-Gruppe `(app)`, die
+Hinweisseite hängt gar nicht an diesem Baum. Sie lädt nur das Framework, keine
+Übersetzungstabelle, keinen Zustandsspeicher, keine Kategorienlogik.
 
 Was diese Schranke leistet und was nicht:
 

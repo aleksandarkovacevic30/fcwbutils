@@ -1,8 +1,15 @@
 import type { Metadata, Viewport } from "next"
-import { AppProvider } from "@/lib/store"
-import { Shell } from "@/components/shell"
 import "./globals.css"
 
+/**
+ * Wurzel-Layout: nur Dokument und Stylesheet.
+ *
+ * Kopfzeile, Navigation und der Zustandsspeicher liegen bewusst eine Ebene
+ * tiefer in der Routen-Gruppe "(app)". Die Hinweisseite unter /gesperrt hängt
+ * damit gar nicht erst an diesem Baum — sie kann die Navigation also auch
+ * dann nicht zeigen, wenn die Proxy-Schicht sie unter einer anderen Adresse
+ * ausliefert.
+ */
 export const metadata: Metadata = {
   title: "FCWB Werkzeuge",
   description:
@@ -18,11 +25,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
-      <body>
-        <AppProvider>
-          <Shell>{children}</Shell>
-        </AppProvider>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
